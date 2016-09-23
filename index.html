@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <title>Title</title>
+</head>
+<body style = "">
+<div id="ng-app"  ng-controller="AjaxController">
+
+    <strong>Sub Reddit result:</strong> <input ng-model="subredit" type="text"/>
+    <button  class="label label-warning" ng-click="getit()">Add</button>
+    <button  class="label label-success" ng-click="clear()">Clear</button>
+    Type :
+    <select ng-model="type">
+        <option ng-repeat="rtype in types ">{{rtype}}</option>
+    </select>
+    <button  class="label label-warning" ng-click="display()" >Change</button><BR>
+    <div style = "height:25px;">
+        <button class="label label-info" ng-repeat = "sub in sublist" ng-click = "deleteit(sub)" >{{sub}} (X)</button>
+    </div>
+    
+    <table id="searchTextResults" class="table table-stripped">
+        <tbody>
+        <tr ng-repeat="element in elements " style='valign:top'>
+            <td align='right'><h1>{{element.score}}</h1></td>
+            <td>
+                {{element.title}}<BR>
+                <small class="label label-success"><a ng-href='http://reddit.com{{element.permalink}}' target='_blank'>REDDIT LINK</a></small>
+                <small class="label label-warning"><a ng-href='{{element.url}}' target='_blank'>URL</a></small>
+                <small class="label label-info"> {{element.author}}</small>
+                <small class="label label-warning">up {{element.ups}}</small>
+                <small class="label label-success">down {{element.downs}}</small>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
